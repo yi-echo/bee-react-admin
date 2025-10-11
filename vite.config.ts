@@ -32,12 +32,25 @@ export default defineConfig(({ mode }) => {
 		server: {
 			open: true,
 			host: true,
-			port: 3001,
+			port: 9091,
 			proxy: {
+				// "/api": {
+				// 	target: "http://localhost:3000",
+				// 	changeOrigin: true,
+				// 	rewrite: (path) => path.replace(/^\/api/, ""),
+				// 	secure: false,
+				// },
 				"/api": {
 					target: "http://localhost:3000",
 					changeOrigin: true,
+					// rewrite: (path) => path.replace(/^\/dev-api/, "/api"),
 					rewrite: (path) => path.replace(/^\/api/, ""),
+					secure: false,
+				},
+				"pro-api": {
+					target: "https://api.bee-admin.com",
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/pro-api/, ""),
 					secure: false,
 				},
 			},

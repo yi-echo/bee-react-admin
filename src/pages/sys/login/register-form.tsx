@@ -1,10 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import userService from "@/api/services/userService";
 import { Button } from "@/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/ui/form";
 import { Input } from "@/ui/input";
-import { useMutation } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { ReturnButton } from "./components/ReturnButton";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
@@ -21,7 +21,8 @@ function RegisterForm() {
 			username: "",
 			email: "",
 			password: "",
-			confirmPassword: "",
+			// confirmPassword: "",
+			roles: ["ROLE_USER"],
 		},
 	});
 
@@ -82,7 +83,7 @@ function RegisterForm() {
 					)}
 				/>
 
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name="confirmPassword"
 					rules={{
@@ -97,7 +98,7 @@ function RegisterForm() {
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 
 				<Button type="submit" className="w-full">
 					{t("sys.login.registerButton")}

@@ -54,7 +54,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 				<form onSubmit={form.handleSubmit(handleFinish)} className="space-y-4">
 					<div className="flex flex-col items-center gap-2 text-center">
 						<img src={loginImg} alt="login" className="w-60 h-20 rounded-full" />
-						<span className="text-2xl font-bold">{t("sys.login.signInPrimaryTitle")}</span>
+						<span className="text-2xl font-bold text-yellow-500 hover:text-white hover:bg-yellow-500">
+							{t("sys.login.signInPrimaryTitle")}
+						</span>
 						<p className="text-balance text-sm text-muted-foreground">{t("sys.login.signInFormDescription")}</p>
 					</div>
 
@@ -64,7 +66,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 						rules={{ required: t("sys.login.accountPlaceholder") }}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t("sys.login.userName")}</FormLabel>
+								<FormLabel>{t("sys.login.email")}</FormLabel>
 								<FormControl>
 									<Input placeholder={DB_USER.map((user) => user.username).join("/")} {...field} />
 								</FormControl>
@@ -98,7 +100,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 							/>
 							<label
 								htmlFor="remember"
-								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+								className="text-[#4d9caa] text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 							>
 								{t("sys.login.rememberMe")}
 							</label>
@@ -109,22 +111,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					</div>
 
 					{/* 登录按钮 */}
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full bg-yellow-500">
 						{loading && <Loader2 className="animate-spin mr-2" />}
-						{t("sys.login.loginButton")}
+						<span className="text-black font-semibold hover:text-white">{t("sys.login.loginButton")}</span>
 					</Button>
-
-					{/* 手机登录/二维码登录 */}
-					<div className="grid gap-4 sm:grid-cols-2">
-						<Button variant="outline" className="w-full" onClick={() => setLoginState(LoginStateEnum.MOBILE)}>
-							<Icon icon="uil:mobile-android" size={20} />
-							{t("sys.login.mobileSignInFormTitle")}
-						</Button>
-						<Button variant="outline" className="w-full" onClick={() => setLoginState(LoginStateEnum.QR_CODE)}>
-							<Icon icon="uil:qrcode-scan" size={20} />
-							{t("sys.login.qrSignInFormTitle")}
-						</Button>
-					</div>
 
 					{/* 其他登录方式 */}
 					<div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
@@ -144,7 +134,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
 					{/* 注册 */}
 					<div className="text-center text-sm">
-						{t("sys.login.noAccount")}
+						<span className="text-white">{t("sys.login.noAccount")}</span>
 						<Button variant="link" className="px-1" onClick={() => setLoginState(LoginStateEnum.REGISTER)}>
 							{t("sys.login.signUpFormTitle")}
 						</Button>
