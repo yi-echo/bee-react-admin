@@ -72,7 +72,8 @@
 			"privacyPolicy": " 隐私政策 ",
 			"logout": "退出",
 			"signInFormDescription": "输入您的账号登录到您的账户",
-			"noAccount": "没有账号？"
+			"noAccount": "没有账号？",
+			"logoutSuccessful": "退出成功"
 		},
 		"tab": {
 			"fullscreen": "内容全屏",

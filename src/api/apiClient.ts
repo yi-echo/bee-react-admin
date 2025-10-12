@@ -1,10 +1,10 @@
-import { GLOBAL_CONFIG } from "@/global-config";
-import { t } from "@/locales/i18n";
-import userStore from "@/store/userStore";
-import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from "axios";
+import axios, { type AxiosError, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { toast } from "sonner";
 import type { Result } from "#/api";
 import { ResultStatus } from "#/enum";
+import { GLOBAL_CONFIG } from "@/global-config";
+import { t } from "@/locales/i18n";
+import userStore from "@/store/userStore";
 
 const axiosInstance = axios.create({
 	baseURL: GLOBAL_CONFIG.apiBaseUrl,
@@ -23,10 +23,13 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
 	(res: AxiosResponse<Result<any>>) => {
 		if (!res.data) throw new Error(t("sys.api.apiRequestFailed"));
-		const { status, data, message } = res.data;
-		if (status === ResultStatus.SUCCESS) {
+		const { code, data, message } = res.data;
+		console.log("res.data---------------", res.data);
+		console.log("code:", code, "ResultStatus.SUCCESS:", ResultStatus.SUCCESS);
+		if (code === ResultStatus.SUCCESS) {
 			return data;
 		}
+		console.log("Code mismatch - throwing error with message:", message);
 		throw new Error(message || t("sys.api.apiRequestFailed"));
 	},
 	(error: AxiosError<Result>) => {

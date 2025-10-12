@@ -1,27 +1,43 @@
-import { useLoginStateContext } from "@/pages/sys/login/providers/login-provider";
-import { useRouter } from "@/routes/hooks";
-import { useUserActions, useUserInfo } from "@/store/userStore";
-import { Button } from "@/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
-
+import { toast } from "sonner";
+import userService from "@/api/services/userService";
+import { useLoginStateContext } from "@/pages/sys/login/providers/login-provider";
+import { useRouter } from "@/routes/hooks";
+import { useUserActions, useUserInfo, useUserToken } from "@/store/userStore";
+import { Button } from "@/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/ui/dropdown-menu";
 /**
  * Account Dropdown
  */
 export default function AccountDropdown() {
 	const { replace } = useRouter();
 	const { username, email, avatar } = useUserInfo();
+	const { accessToken, refreshToken } = useUserToken();
 	const { clearUserInfoAndToken } = useUserActions();
 	const { backToLogin } = useLoginStateContext();
 	const { t } = useTranslation();
-	const logout = () => {
+	const handleLogout = async () => {
 		try {
+			console.log("logout---------------");
+			if (accessToken && refreshToken) {
+				await userService.logout({
+					accessToken,
+					refreshToken,
+				});
+			}
 			clearUserInfoAndToken();
 			backToLogin();
 		} catch (error) {
 			console.log(error);
 		} finally {
+			toast.success(t("sys.login.logoutSuccessful"));
 			replace("/auth/login");
 		}
 	};
@@ -54,7 +70,7 @@ export default function AccountDropdown() {
 					<NavLink to="/management/user/account">{t("sys.nav.user.account")}</NavLink>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem className="font-bold text-warning" onClick={logout}>
+				<DropdownMenuItem className="font-bold text-warning" onClick={handleLogout}>
 					{t("sys.login.logout")}
 				</DropdownMenuItem>
 			</DropdownMenuContent>

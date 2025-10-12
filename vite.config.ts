@@ -34,17 +34,17 @@ export default defineConfig(({ mode }) => {
 			host: true,
 			port: 9091,
 			proxy: {
-				// "/api": {
-				// 	target: "http://localhost:3000",
-				// 	changeOrigin: true,
-				// 	rewrite: (path) => path.replace(/^\/api/, ""),
-				// 	secure: false,
-				// },
 				"/api": {
 					target: "http://localhost:3000",
 					changeOrigin: true,
-					// rewrite: (path) => path.replace(/^\/dev-api/, "/api"),
 					rewrite: (path) => path.replace(/^\/api/, ""),
+					secure: false,
+				},
+				"/dev-api": {
+					target: "http://localhost:8080",
+					changeOrigin: true,
+					// rewrite: (path) => path.replace(/^\/dev-api/, "/api"),
+					rewrite: (path) => path.replace(/^\/dev-api/, "/api"),
 					secure: false,
 				},
 				"pro-api": {

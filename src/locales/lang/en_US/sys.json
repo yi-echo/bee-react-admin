@@ -67,7 +67,8 @@
 			"termsOfService": " Terms of service ",
 			"userName": "Username",
 			"signInFormDescription": "Enter your email to login to your account",
-			"noAccount": "Don't have an account?"
+			"noAccount": "Don't have an account?",
+			"logoutSuccessful": "Logout successful"
 		},
 		"nav": {
 			"dashboard": "Dashboard",

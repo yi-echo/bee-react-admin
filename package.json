@@ -1,9 +1,9 @@
 {
-	"name": "slash-admin",
+	"name": "bee-react-admin",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://github.com/d3george/slash-admin",
+	"homepage": "https://github.com/yi-echo/bee-react-admin",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
