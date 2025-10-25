@@ -8,7 +8,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 > 🧩 一个轻量、现代、易上手的 React + TypeScript 后台管理模板。  
-> 💡 面向 ** 前后端学习者 / 个人开发者**，帮助你快速掌握前后端分离项目的完整开发流程。  
+> 💡 面向 前后端学习者 / 个人开发者，帮助你快速掌握前后端分离项目的完整开发流程。  
 > 🎓 同时适合学习 React 技术栈、权限管理、接口联调等核心技能。
 
 ---
