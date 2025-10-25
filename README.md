@@ -14,12 +14,15 @@
 
 ## ✨ 在线体验
 
-👉 [Demo 预览地址](https://bee-react-admin.vercel.app/)  
+👉 [Demo 预览地址](https://bee-admin-flax.vercel.app/)  
 📦 [GitHub 仓库地址](https://github.com/yi-echo/bee-react-admin)
+🧠 [后端仓库（Spring Boot）](https://github.com/yi-echo/bee-spring-boot-server)
 
-![Bee React Admin Preview](./public/preview.png)
+![Bee React Admin Preview](./public/preview-bg.png)
 
 ---
+
+## ![Bee React Admin Preview](./public/index.png)
 
 ## 🚀 特性亮点
 
